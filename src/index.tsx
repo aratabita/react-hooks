@@ -4,7 +4,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App name={''} price={1000} />
   </React.StrictMode>,
   document.getElementById('root')
 );
