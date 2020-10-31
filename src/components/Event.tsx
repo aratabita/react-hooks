@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { DELETE_EVENT } from '../actions/index.';
 // @ts-ignore
 const Event = ({ event, dispatch }) => {
   const id = event.id;
@@ -9,7 +9,7 @@ const Event = ({ event, dispatch }) => {
     );
     if (!result) return;
     dispatch({
-      type: 'DELETE_EVENT',
+      type: DELETE_EVENT,
       id,
     });
   };
