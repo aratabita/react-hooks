@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface AppProps {
   name: string;
@@ -6,23 +6,45 @@ interface AppProps {
 }
 
 const App: React.FC<AppProps> = (props) => {
-  const [name, setName] = useState<string>(props.name);
-  const [price, setPrice] = useState<number>(props.price);
+  // @ts-ignore
+  const [state, setState] = useState<string>(props);
+  const { name, price } = state;
 
-  const reset = () => {
-    setPrice(props.price);
-    setName(props.name);
+  useEffect(() => {
+    console.log('useEffect is like componentDidMount & componentDidUpdate'); //renderの後に呼ばれる。DOMが生成された後に呼ばれる。
+  });
+
+  useEffect(() => {
+    console.log('componentDidMount//[]を渡すと、最初のrenderingのみ呼ばれる');
+  }, []);
+
+  useEffect(() => {
+    console.log(
+      'componentDidUpdate//[name]を渡すと、nameが更新されるときのみ呼ばれる。'
+    );
+  }, [name]);
+
+  const renderPeriod = () => {
+    console.log('renderPeriod');
+    return '。';
   };
 
   return (
     <>
       <p>
-        現在の{name}は、{price}円です。
+        現在の{name}は、{price}円です{renderPeriod()}
       </p>
-      <button onClick={() => setPrice(price + 1)}>+1</button>
-      <button onClick={() => setPrice(price - 1)}>-1</button>
-      <button onClick={() => reset()}>Reset</button>
-      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <button onClick={() => setState({ ...state, price: price + 1 })}>
+        +1
+      </button>
+      <button onClick={() => setState({ ...state, price: price + -1 })}>
+        -1
+      </button>
+      <button onClick={() => setState(props)}>Reset</button>
+      <input
+        value={state.name}
+        onChange={(e) => setState({ ...state, name: e.target.value })}
+      />
     </>
   );
 };
