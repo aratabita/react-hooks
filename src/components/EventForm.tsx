@@ -1,8 +1,10 @@
-import React, { useReducer, useState } from 'react';
-import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions/index.';
+import React, { useReducer, useState, useContext } from 'react';
+import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions';
+import AppContext from '../contexts/AppContext';
 
 // @ts-ignore
-const EventForm = ({ state, dispatch }) => {
+const EventForm = () => {
+  const { state, dispatch } = useContext(AppContext);
   // @ts-ignore
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -15,6 +17,8 @@ const EventForm = ({ state, dispatch }) => {
       title,
       body,
     });
+    setTitle('');
+    setBody('');
   };
 
   const deleteAllEvents = () => (e: any) => {
@@ -51,7 +55,7 @@ const EventForm = ({ state, dispatch }) => {
           />
         </div>
         <button
-          className="btn btn-primary"
+          className="btn btn-primary mr-5"
           onClick={addEvent()}
           disabled={unCreatable}
         >
