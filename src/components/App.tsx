@@ -10,6 +10,7 @@ import EventForm from './EventForm';
 const App = () => {
   const initialState = {
     events: [],
+    operationLogs: [],
   };
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // @ts-ignore
