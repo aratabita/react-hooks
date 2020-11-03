@@ -2,6 +2,7 @@ import React, { useReducer, useState } from 'react';
 import reducer from '../reducers';
 import Events from './Events';
 import AppContext from '../contexts/AppContext';
+import OperationLogs from './OperationLogs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,6 +22,7 @@ const App = () => {
         <div className="container-fluid">
           <EventForm />
           <Events />
+          <OperationLogs />
         </div>
       </AppContext.Provider>
     </>
