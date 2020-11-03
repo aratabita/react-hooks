@@ -4,6 +4,7 @@ const events = (
 ) => {
   switch (action.type) {
     case 'CREATE_EVENT':
+      // eslint-disable-next-line no-case-declarations
       const event = { title: action.title, body: action.body };
       // @ts-ignore
       const id = state.length === 0 ? 1 : state[state.length - 1].id + 1;

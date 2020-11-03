@@ -14,11 +14,11 @@ const Events = () => {
             <th>ID</th>
             <th>タイトル</th>
             <th>ボディ</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
         <tbody>
-          {state.map((event: any, index: any) => (
+          {state.events.map((event: any, index: any) => (
             <Event key={index} event={event} />
           ))}
         </tbody>
